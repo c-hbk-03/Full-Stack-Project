@@ -1,5 +1,5 @@
 # Full-Stack-Project
-Codebase files in "master"
+#Codebase files in "master"
 This is the submission of my full stack project for the academic year 2025-2026, semester 8. Charbel Hobeika
 NOBL – Network of Bloodlines Lineage
 NOBL is a modern web platform for the horse and camel community in Saudi Arabia. It connects breeders, vendors, and enthusiasts, providing a unified space for breeding, e-commerce, services, community engagement, and a live animal marketplace.
