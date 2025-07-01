@@ -6,7 +6,7 @@ class BreedingMatcher {
     this.otherBreedInput = document.getElementById('otherBreedInput');
     this.traitsSelect = document.getElementById('traitsSelect');
     this.otherTraitInput = document.getElementById('otherTraitInput');
-    // Always set a default mode if not set
+    this.permissionMsg = null;
     if (!localStorage.getItem('noblMode')) localStorage.setItem('noblMode', 'horse');
     this.mode = localStorage.getItem('noblMode') || 'horse';
     this.breeds = {
@@ -58,11 +58,13 @@ class BreedingMatcher {
         this.populateBreeds();
         this.populateTraits();
       }
+      if (e.key === 'noblUser') {
+        this.updatePermissions();
+      }
     });
     if (this.form) {
       this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
-    // Fallback: if the select is empty after DOMContentLoaded, populate it
     document.addEventListener('DOMContentLoaded', () => {
       if (this.breedSelect && this.breedSelect.options.length === 0) {
         this.populateBreeds();
@@ -70,9 +72,33 @@ class BreedingMatcher {
       if (this.traitsSelect && this.traitsSelect.options.length === 0) {
         this.populateTraits();
       }
+      this.updatePermissions();
     });
   }
-
+  getUserRole() {
+    const user = JSON.parse(localStorage.getItem('noblUser') || '{}');
+    return user.role || null;
+  }
+  updatePermissions() {
+    const role = this.getUserRole();
+    if (!this.form) return;
+    if (role !== 'client') {
+      // Disable all form fields and show a message
+      Array.from(this.form.elements).forEach(el => el.disabled = true);
+      if (!this.permissionMsg) {
+        this.permissionMsg = document.createElement('div');
+        this.permissionMsg.className = 'alert alert-warning mt-2';
+        this.permissionMsg.textContent = 'Only clients can use the breeding match platform.';
+        this.form.parentNode.insertBefore(this.permissionMsg, this.form.nextSibling);
+      }
+    } else {
+      Array.from(this.form.elements).forEach(el => el.disabled = false);
+      if (this.permissionMsg) {
+        this.permissionMsg.remove();
+        this.permissionMsg = null;
+      }
+    }
+  }
   populateBreeds() {
     const mode = localStorage.getItem('noblMode') || 'horse';
     this.breedSelect.innerHTML = `<option value="">Choose...</option>` +

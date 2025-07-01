@@ -109,6 +109,9 @@ class AuthManager {
     if (!nav) return;
     let userDisplay = document.getElementById('user-display');
     let signInBtn = document.getElementById('signin-btn');
+    // Show/hide Manage Products tab for vendors only
+    const manageTab = document.getElementById('manage-products-tab');
+    const role = this.user ? this.user.role : null;
     if (this.user) {
       if (!userDisplay) {
         userDisplay = document.createElement('li');
@@ -118,10 +121,12 @@ class AuthManager {
       }
       userDisplay.innerHTML = `<span class='me-2 fw-bold text-uppercase'>${this.user.role} (${this.user.username})</span><button id='signout-btn' class='btn btn-outline-danger btn-sm ms-2'>Sign Out</button>`;
       if (signInBtn) signInBtn.style.display = 'none';
+      if (manageTab) manageTab.style.display = role === 'vendor' ? '' : 'none';
     } else {
       if (userDisplay) userDisplay.remove();
       if (signInBtn) signInBtn.style.display = '';
       document.body.classList.remove('vendor', 'client');
+      if (manageTab) manageTab.style.display = 'none';
     }
   }
   signOut() {
@@ -132,8 +137,16 @@ class AuthManager {
   }
 }
 
+// On DOMContentLoaded, update the manage products tab visibility immediately
+function updateManageTabOnLoad() {
+  const manageTab = document.getElementById('manage-products-tab');
+  const user = JSON.parse(localStorage.getItem('noblUser') || '{}');
+  if (manageTab) manageTab.style.display = user.role === 'vendor' ? '' : 'none';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   new ThemeManager();
   if (document.getElementById('mode-switcher')) new ModeSwitcher();
   new AuthManager();
+  updateManageTabOnLoad();
 }); 

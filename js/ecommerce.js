@@ -22,23 +22,37 @@ class EcommerceProducts {
   saveProducts() {
     localStorage.setItem('noblProducts', JSON.stringify(this.products));
   }
+  getUserRole() {
+    const user = JSON.parse(localStorage.getItem('noblUser') || '{}');
+    return user.role || null;
+  }
   init() {
     this.grid = document.querySelector('.row.row-cols-1.row-cols-md-3.g-4');
     this.render();
-    // Show add product bar for vendors
+    // Show add product bar for vendors only
     const addBar = document.getElementById('add-product-bar');
-    const user = JSON.parse(localStorage.getItem('noblUser') || '{}');
-    if (addBar) addBar.style.display = user.role === 'vendor' ? '' : 'none';
+    if (addBar) addBar.style.display = this.getUserRole() === 'vendor' ? '' : 'none';
     // Add product form
     const addForm = document.getElementById('add-product-form');
     if (addForm) {
       addForm.addEventListener('submit', (e) => this.handleAddProduct(e));
     }
+    // Prevent modal opening for non-vendors
+    const addProductModalBtn = addBar ? addBar.querySelector('button[data-bs-toggle="modal"]') : null;
+    if (addProductModalBtn) {
+      addProductModalBtn.addEventListener('click', (e) => {
+        if (this.getUserRole() !== 'vendor') {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      });
+    }
     // Listen for sign in/out to update add bar
     window.addEventListener('storage', (e) => {
       if (e.key === 'noblUser' && addBar) {
-        const user = JSON.parse(localStorage.getItem('noblUser') || '{}');
-        addBar.style.display = user.role === 'vendor' ? '' : 'none';
+        addBar.style.display = this.getUserRole() === 'vendor' ? '' : 'none';
+        this.render();
       }
     });
   }
@@ -49,6 +63,7 @@ class EcommerceProducts {
     if (!this.grid) return;
     this.products = this.loadProducts();
     const mode = this.getMode();
+    const role = this.getUserRole();
     const filtered = this.products.filter(p => p.type === mode);
     if (filtered.length === 0) {
       this.grid.innerHTML = `<div class='col'><div class='card nobl-card h-100 text-center p-4'><p>No products available for this mode.</p></div></div>`;
@@ -63,15 +78,24 @@ class EcommerceProducts {
             <p class="card-text">${product.description}</p>
             <div class="mt-auto">
               <span class="fw-bold">$${product.price}</span>
-              <a href="#" class="btn btn-outline-primary ms-3">Buy Now</a>
+              ${role === 'client' ? `<a href="#" class="btn btn-outline-primary ms-3">Buy Now</a>` : ''}
             </div>
           </div>
         </div>
       </div>
     `).join('');
+    // Hide all buy buttons for non-clients
+    if (role !== 'client') {
+      const buyBtns = this.grid.querySelectorAll('.btn.btn-outline-primary');
+      buyBtns.forEach(btn => btn.style.display = 'none');
+    }
+    // Hide add product bar for non-vendors
+    const addBar = document.getElementById('add-product-bar');
+    if (addBar) addBar.style.display = role === 'vendor' ? '' : 'none';
   }
   handleAddProduct(e) {
     e.preventDefault();
+    if (this.getUserRole() !== 'vendor') return;
     const name = document.getElementById('product-name').value.trim();
     const description = document.getElementById('product-desc').value.trim();
     const price = parseFloat(document.getElementById('product-price').value);

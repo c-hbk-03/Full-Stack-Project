@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOBL - Community</title>
+  <title>NOBL - Manage Products</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -27,8 +27,8 @@
           <li class="nav-item"><a class="nav-link" href="breeding.html">Breeding</a></li>
           <li class="nav-item"><a class="nav-link" href="ecommerce.html">E-Commerce</a></li>
           <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-          <li class="nav-item"><a class="nav-link active" href="community.html">Community</a></li>
-          <li class="nav-item" id="manage-products-tab" style="display:none;"><a class="nav-link" href="manage-products.html">Manage Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+          <li class="nav-item" id="manage-products-tab" style="display:none;"><a class="nav-link active" href="manage-products.html">Manage Products</a></li>
           <li class="nav-item d-flex align-items-center ms-2">
             <button id="signin-btn" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#signinModal">Sign In</button>
             <button id="theme-toggle" class="btn btn-outline-secondary" aria-label="Toggle theme">🌙</button>
@@ -37,7 +37,7 @@
       </div>
     </div>
   </nav>
-  <!-- Sign In Modal -->
+  <!-- Sign In Modal (reuse from other pages) -->
   <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -65,49 +65,62 @@
   </div>
   <main class="container py-5">
     <section class="mb-5 text-center">
-      <h1 class="mb-3">NOBL Community</h1>
-      <p class="lead">Stay updated with the latest news, stories, and fascinating facts from the world of horses and camels. Join the conversation and connect with fellow enthusiasts!</p>
+      <h1 class="mb-3">Manage Products</h1>
+      <p class="lead">Add or remove your products from the NOBL marketplace. Only vendors can access this page.</p>
     </section>
-    <section class="mb-5">
-      <h2 class="mb-4">News & Stories</h2>
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-          <div class="card nobl-card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Saudi Camel Festival 2024</h5>
-              <p class="card-text">The annual festival brings together camel owners and enthusiasts from across the region. Experience races, beauty contests, and cultural events celebrating the heritage of camels in Saudi Arabia.</p>
-            </div>
+    <div id="vendor-access" style="display:none;">
+      <div class="mb-3" id="add-product-bar">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product</button>
+      </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="manage-products-grid">
+        <!-- Product cards will be rendered here by manage-products.js -->
+      </div>
+    </div>
+    <div id="access-denied" class="alert alert-danger text-center" style="display:none;">
+      Access denied. Only vendors can manage products.
+    </div>
+    <!-- Add Product Modal (reuse from ecommerce.html) -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
-        <div class="col">
-          <div class="card nobl-card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Champion Arabian Horse Announced</h5>
-              <p class="card-text">A new champion has been crowned at the Riyadh Equestrian Show, highlighting the strength and beauty of Arabian horses. Congratulations to all participants!</p>
-            </div>
+          <div class="modal-body">
+            <form id="add-product-form">
+              <div class="mb-3">
+                <label for="product-name" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="product-name" required>
+              </div>
+              <div class="mb-3">
+                <label for="product-desc" class="form-label">Description</label>
+                <textarea class="form-control" id="product-desc" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="product-price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="product-price" required min="0">
+              </div>
+              <div class="mb-3">
+                <label for="product-image" class="form-label">Image URL</label>
+                <input type="url" class="form-control" id="product-image" required>
+              </div>
+              <div class="mb-3">
+                <label for="product-type" class="form-label">Type</label>
+                <select class="form-select" id="product-type" required>
+                  <option value="camel">Camel</option>
+                  <option value="horse">Horse</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Add Product</button>
+            </form>
           </div>
         </div>
       </div>
-    </section>
-    <section>
-      <h2 class="mb-4">Did You Know?</h2>
-      <div id="facts-container" class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col" id="loading-fact">
-          <div class="card nobl-card h-100 text-center p-4">
-            <div class="spinner-border text-primary mb-3" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            <p>Loading animal facts...</p>
-          </div>
-        </div>
-      </div>
-      <div id="fact-error" class="alert alert-danger mt-4 d-none" role="alert">
-        Unable to load animal facts at this time. Please try again later.
-      </div>
-    </section>
+    </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/community.js"></script>
+  <script src="js/manage-products.js"></script>
 </body>
 </html> 
