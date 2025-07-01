@@ -10,29 +10,42 @@
 <body class="light home-page">
   <nav class="navbar navbar-expand-lg nobl-navbar">
     <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
-        <img src="Images/NOBL-1.png" alt="NOBL Logo" height="110" class="me-2">
-      </a>
-      <span class="navbar-title mx-auto fw-bold text-uppercase text-center">Network Of Bloodlines and Lineages</span>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainSidebar" aria-controls="mainSidebar" aria-label="Open menu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="breeding.html">Breeding</a></li>
-          <li class="nav-item"><a class="nav-link" href="ecommerce.html">E-Commerce</a></li>
-          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
-          <li class="nav-item" id="manage-products-tab" style="display:none;"><a class="nav-link" href="manage-products.html">Manage Products</a></li>
-          <li class="nav-item d-flex align-items-center ms-2">
-            <button id="signin-btn" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#signinModal">Sign In</button>
-            <button id="theme-toggle" class="btn btn-outline-secondary" aria-label="Toggle theme">🌙</button>
-          </li>
-        </ul>
+      <div class="mx-auto text-center flex-grow-1">
+        <a class="navbar-brand d-flex justify-content-center align-items-center mx-auto" href="index.html">
+          <img src="Images/NOBL-1.png" alt="NOBL Logo" height="120">
+        </a>
+      </div>
+      <div class="ms-auto d-flex align-items-center">
+        <div id="mode-switcher" class="d-flex align-items-center me-2">
+          <button id="camel-mode" class="btn btn-outline-secondary me-1">🐪 Camel</button>
+          <button id="horse-mode" class="btn btn-outline-secondary">🐎 Horse</button>
+        </div>
+        <button id="signin-btn" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#signinModal">Sign In</button>
+        <span id="user-display"></span>
+        <button id="theme-toggle" class="btn btn-outline-secondary" aria-label="Toggle theme">🌙</button>
       </div>
     </div>
   </nav>
+  <!-- Sidebar Offcanvas -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mainSidebar" aria-labelledby="mainSidebarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="mainSidebarLabel">Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="breeding.html">Breeding</a></li>
+        <li class="nav-item"><a class="nav-link" href="ecommerce.html">E-Commerce</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+        <li class="nav-item"><a class="nav-link" href="animal-market.html">Buy & Sell Animals</a></li>
+        <li class="nav-item" id="sidebar-manage-products" style="display:none;"><a class="nav-link" href="manage-products.html">Manage Products</a></li>
+      </ul>
+    </div>
+  </div>
   <!-- Sign In Modal -->
   <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -68,7 +81,7 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">Breeding Platform</h5>
             <p class="card-text flex-grow-1">Match your prized horses and camels for breeding. Find the perfect lineage and connect with other owners.</p>
-            <a href="#breeding" class="btn btn-outline-primary mt-auto">Find Matches</a>
+            <a href="breeding.html" class="btn btn-outline-primary mt-auto">Find Matches</a>
           </div>
         </div>
       </div>
@@ -77,7 +90,7 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">E-Commerce</h5>
             <p class="card-text flex-grow-1">Shop for saddles, feed, and all essentials for your animals. Quality products from trusted vendors.</p>
-            <a href="#ecommerce" class="btn btn-outline-primary mt-auto">Shop Now</a>
+            <a href="ecommerce.html" class="btn btn-outline-primary mt-auto">Shop Now</a>
           </div>
         </div>
       </div>
@@ -86,7 +99,7 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">Services</h5>
             <p class="card-text flex-grow-1">Book vet visits, stable maintenance, and expert consultations. All services tailored for your needs.</p>
-            <a href="#services" class="btn btn-outline-primary mt-auto">View Services</a>
+            <a href="services.html" class="btn btn-outline-primary mt-auto">View Services</a>
           </div>
         </div>
       </div>
@@ -95,7 +108,7 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">Community</h5>
             <p class="card-text flex-grow-1">Stay updated with the latest news and stories from the horse and camel world. Join the conversation!</p>
-            <a href="#community" class="btn btn-outline-primary mt-auto">Explore Community</a>
+            <a href="community.html" class="btn btn-outline-primary mt-auto">Explore Community</a>
           </div>
         </div>
       </div>

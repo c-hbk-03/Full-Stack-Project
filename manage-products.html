@@ -10,33 +10,42 @@
 <body class="light">
   <nav class="navbar navbar-expand-lg nobl-navbar">
     <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
-        <img src="Images/NOBL-1.png" alt="NOBL Logo" height="110" class="me-2">
-      </a>
-      <div id="mode-switcher" class="d-flex align-items-center ms-3">
-        <button id="camel-mode" class="btn btn-outline-secondary me-1">🐪 Camel</button>
-        <button id="horse-mode" class="btn btn-outline-secondary">🐎 Horse</button>
-      </div>
-      <span class="navbar-title mx-auto fw-bold text-uppercase text-center">Network Of Bloodlines and Lineages</span>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainSidebar" aria-controls="mainSidebar" aria-label="Open menu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="breeding.html">Breeding</a></li>
-          <li class="nav-item"><a class="nav-link" href="ecommerce.html">E-Commerce</a></li>
-          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
-          <li class="nav-item" id="manage-products-tab" style="display:none;"><a class="nav-link active" href="manage-products.html">Manage Products</a></li>
-          <li class="nav-item d-flex align-items-center ms-2">
-            <button id="signin-btn" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#signinModal">Sign In</button>
-            <button id="theme-toggle" class="btn btn-outline-secondary" aria-label="Toggle theme">🌙</button>
-          </li>
-        </ul>
+      <div class="mx-auto text-center flex-grow-1">
+        <a class="navbar-brand d-flex justify-content-center align-items-center mx-auto" href="index.html">
+          <img src="Images/NOBL-1.png" alt="NOBL Logo" height="120">
+        </a>
+      </div>
+      <div class="ms-auto d-flex align-items-center">
+        <div id="mode-switcher" class="d-flex align-items-center me-2">
+          <button id="camel-mode" class="btn btn-outline-secondary me-1">🐪 Camel</button>
+          <button id="horse-mode" class="btn btn-outline-secondary">🐎 Horse</button>
+        </div>
+        <button id="signin-btn" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#signinModal">Sign In</button>
+        <span id="user-display"></span>
+        <button id="theme-toggle" class="btn btn-outline-secondary" aria-label="Toggle theme">🌙</button>
       </div>
     </div>
   </nav>
+  <!-- Sidebar Offcanvas -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mainSidebar" aria-labelledby="mainSidebarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="mainSidebarLabel">Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="breeding.html">Breeding</a></li>
+        <li class="nav-item"><a class="nav-link" href="ecommerce.html">E-Commerce</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+        <li class="nav-item"><a class="nav-link" href="animal-market.html">Buy & Sell Animals</a></li>
+        <li class="nav-item" id="sidebar-manage-products" style="display:none;"><a class="nav-link" href="manage-products.html">Manage Products</a></li>
+      </ul>
+    </div>
+  </div>
   <!-- Sign In Modal (reuse from other pages) -->
   <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
     <div class="modal-dialog">

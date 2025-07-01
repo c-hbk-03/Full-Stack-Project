@@ -105,29 +105,22 @@ class AuthManager {
     }
   }
   updateNavbar() {
-    const nav = document.querySelector('.navbar-nav');
-    if (!nav) return;
     let userDisplay = document.getElementById('user-display');
     let signInBtn = document.getElementById('signin-btn');
-    // Show/hide Manage Products tab for vendors only
-    const manageTab = document.getElementById('manage-products-tab');
     const role = this.user ? this.user.role : null;
     if (this.user) {
-      if (!userDisplay) {
-        userDisplay = document.createElement('li');
-        userDisplay.className = 'nav-item d-flex align-items-center ms-2';
-        userDisplay.id = 'user-display';
-        nav.appendChild(userDisplay);
+      if (userDisplay) {
+        userDisplay.innerHTML = `<span class='me-2 fw-bold text-uppercase'>${this.user.role} (${this.user.username})</span><button id='signout-btn' class='btn btn-outline-danger btn-sm ms-2'>Sign Out</button>`;
       }
-      userDisplay.innerHTML = `<span class='me-2 fw-bold text-uppercase'>${this.user.role} (${this.user.username})</span><button id='signout-btn' class='btn btn-outline-danger btn-sm ms-2'>Sign Out</button>`;
       if (signInBtn) signInBtn.style.display = 'none';
-      if (manageTab) manageTab.style.display = role === 'vendor' ? '' : 'none';
     } else {
-      if (userDisplay) userDisplay.remove();
+      if (userDisplay) userDisplay.innerHTML = '';
       if (signInBtn) signInBtn.style.display = '';
       document.body.classList.remove('vendor', 'client');
-      if (manageTab) manageTab.style.display = 'none';
     }
+    // Sidebar manage products link for vendors only
+    const sidebarManage = document.getElementById('sidebar-manage-products');
+    if (sidebarManage) sidebarManage.style.display = role === 'vendor' ? '' : 'none';
   }
   signOut() {
     this.user = null;
@@ -137,16 +130,43 @@ class AuthManager {
   }
 }
 
-// On DOMContentLoaded, update the manage products tab visibility immediately
-function updateManageTabOnLoad() {
-  const manageTab = document.getElementById('manage-products-tab');
+// On DOMContentLoaded, update the sidebar manage products link visibility immediately
+function updateSidebarManageOnLoad() {
+  const sidebarManage = document.getElementById('sidebar-manage-products');
   const user = JSON.parse(localStorage.getItem('noblUser') || '{}');
-  if (manageTab) manageTab.style.display = user.role === 'vendor' ? '' : 'none';
+  if (sidebarManage) sidebarManage.style.display = user.role === 'vendor' ? '' : 'none';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.body.style.opacity = 0;
+  document.body.style.transition = 'opacity 0.5s';
+  setTimeout(() => { document.body.style.opacity = 1; }, 50);
+
   new ThemeManager();
   if (document.getElementById('mode-switcher')) new ModeSwitcher();
   new AuthManager();
-  updateManageTabOnLoad();
+  updateSidebarManageOnLoad();
+
+  // Make homepage buttons functional
+  if (document.body.classList.contains('home-page')) {
+    const navMap = {
+      'breeding.html': 'breeding.html',
+      'ecommerce.html': 'ecommerce.html',
+      'services.html': 'services.html',
+      'community.html': 'community.html',
+      'animal-market.html': 'animal-market.html'
+    };
+    document.querySelectorAll('.nobl-card a.btn').forEach(btn => {
+      const href = btn.getAttribute('href');
+      if (navMap[href]) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.body.style.opacity = 0;
+          setTimeout(() => {
+            window.location.href = navMap[href];
+          }, 500);
+        });
+      }
+    });
+  }
 }); 

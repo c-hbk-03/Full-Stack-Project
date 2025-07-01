@@ -11,12 +11,12 @@ class EcommerceProducts {
     const saved = localStorage.getItem('noblProducts');
     if (saved) return JSON.parse(saved);
     return [
-      { name: 'Premium Leather Saddle', description: 'Handcrafted for comfort and durability. Perfect for long rides.', price: 350, image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80', type: 'horse' },
-      { name: 'Organic Camel Feed', description: 'Nutrient-rich feed to keep your camels healthy and strong.', price: 45, image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80', type: 'camel' },
-      { name: 'Horse Grooming Brush', description: 'Gentle and effective for daily grooming. Suitable for all breeds.', price: 18, image: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80', type: 'horse' },
-      { name: 'Stable Maintenance Kit', description: 'All-in-one kit for keeping your stables clean and organized.', price: 75, image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80', type: 'horse' },
-      { name: 'Desert Camel Blanket', description: 'Warm and lightweight, designed for desert nights.', price: 60, image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80', type: 'camel' },
-      { name: 'Custom Horse Halter', description: 'Adjustable and durable, available in multiple colors.', price: 28, image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80', type: 'horse' }
+      { name: 'Premium Leather Saddle', description: 'Handcrafted for comfort and durability. Perfect for long rides.', price: 350, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7s1dE4C9TdR1SEJzaORsbAKpxj62wL24A3w&s', type: 'horse' },
+      { name: 'Organic Camel Feed', description: 'Nutrient-rich feed to keep your camels healthy and strong.', price: 45, image: 'https://static.wixstatic.com/media/b650ce_37b11a46a0924f588edbace2d414d65d~mv2.jpeg/v1/fit/w_500,h_500,q_90/file.jpg', type: 'camel' },
+      { name: 'Horse Grooming Brush', description: 'Gentle and effective for daily grooming. Suitable for all breeds.', price: 18, image: 'https://m.media-amazon.com/images/I/61e0YjPzikL.jpg', type: 'horse' },
+      { name: 'Stable Maintenance Kit', description: 'All-in-one kit for keeping your stables clean and organized.', price: 75, image: 'https://i0.wp.com/stablestyle.net/wp-content/uploads/2022/03/New-barn-tour-on-Stable-Style.jpg?fit=1500%2C1001&ssl=1', type: 'horse' },
+      { name: 'Desert Camel Blanket', description: 'Warm and lightweight, designed for desert nights.', price: 60, image: 'https://media.istockphoto.com/id/494924154/photo/camel-resting-in-the-desert.jpg?s=612x612&w=0&k=20&c=vG6wr_y93bFRO6ss7LJ3ZZroVdSLA4Ln0w27fifT_3A=', type: 'camel' },
+      { name: 'Custom Horse Halter', description: 'Adjustable and durable, available in multiple colors.', price: 28, image: 'https://perrisleather.com/img/product/190PHBB_1-B.jpg?fv=79ED08F65B6F92C4EF4BEFCC20855ADA', type: 'horse' }
     ];
   }
   saveProducts() {

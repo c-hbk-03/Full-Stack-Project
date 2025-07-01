@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOBL - Community</title>
+  <title>NOBL - Buy & Sell Animals</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -41,12 +41,12 @@
         <li class="nav-item"><a class="nav-link" href="ecommerce.html">E-Commerce</a></li>
         <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
-        <li class="nav-item"><a class="nav-link" href="animal-market.html">Buy & Sell Animals</a></li>
+        <li class="nav-item"><a class="nav-link active" href="animal-market.html">Buy & Sell Animals</a></li>
         <li class="nav-item" id="sidebar-manage-products" style="display:none;"><a class="nav-link" href="manage-products.html">Manage Products</a></li>
       </ul>
     </div>
   </div>
-  <!-- Sign In Modal -->
+  <!-- Sign In Modal (reuse from other pages) -->
   <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -74,53 +74,76 @@
   </div>
   <main class="container py-5">
     <section class="mb-5 text-center">
-      <h1 class="mb-3">NOBL Community</h1>
-      <p class="lead">Stay updated with the latest news, stories, and fascinating facts from the world of horses and camels. Join the conversation and connect with fellow enthusiasts!</p>
-    </section>
-    <section class="mb-5">
-      <h2 class="mb-4">News & Stories</h2>
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-          <div class="card nobl-card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Saudi Camel Festival 2024</h5>
-              <p class="card-text">The annual festival brings together camel owners and enthusiasts from across the region. Experience races, beauty contests, and cultural events celebrating the heritage of camels in Saudi Arabia.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card nobl-card h-100">
-            <div class="card-body">
-              <h5 class="card-title">Champion Arabian Horse Announced</h5>
-              <p class="card-text">A new champion has been crowned at the Riyadh Equestrian Show, highlighting the strength and beauty of Arabian horses. Congratulations to all participants!</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h1 class="mb-3">Buy & Sell Animals</h1>
+      <p class="lead">Browse, buy, or sell horses and camels. All users can participate in the animal marketplace.</p>
+      <button class="btn btn-primary mt-3" id="add-market-animal-btn" data-bs-toggle="modal" data-bs-target="#addMarketAnimalModal">Add Animal for Sale</button>
     </section>
     <section>
-      <h2 class="mb-4">Did You Know?</h2>
-      <div id="facts-container" class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col" id="loading-fact">
-          <div class="card nobl-card h-100 text-center p-4">
-            <div class="spinner-border text-primary mb-3" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            <p>Loading animal facts...</p>
+      <div id="market-animals-list" class="row row-cols-1 row-cols-md-3 g-4"></div>
+    </section>
+    <section class="mt-5">
+      <h2 class="h4 mb-4">Marketplace Timeline</h2>
+      <div id="market-timeline" class="timeline-grid"></div>
+    </section>
+    <!-- Add Animal for Sale Modal -->
+    <div class="modal fade" id="addMarketAnimalModal" tabindex="-1" aria-labelledby="addMarketAnimalModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addMarketAnimalModalLabel">Add Animal for Sale</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="add-market-animal-form">
+              <div class="mb-3">
+                <label for="market-animal-name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="market-animal-name" required>
+              </div>
+              <div class="mb-3">
+                <label for="market-animal-type" class="form-label">Type</label>
+                <select class="form-select" id="market-animal-type" required>
+                  <option value="">Choose...</option>
+                  <option value="camel">Camel</option>
+                  <option value="horse">Horse</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="market-animal-breed" class="form-label">Breed</label>
+                <select class="form-select" id="market-animal-breed" required></select>
+                <input type="text" class="form-control mt-2 d-none" id="market-animal-breed-other" placeholder="Enter breed" />
+              </div>
+              <div class="mb-3">
+                <label for="market-animal-gender" class="form-label">Gender</label>
+                <select class="form-select" id="market-animal-gender" required>
+                  <option value="">Choose...</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="market-animal-traits" class="form-label">Traits</label>
+                <select class="form-select" id="market-animal-traits" required></select>
+                <input type="text" class="form-control mt-2 d-none" id="market-animal-traits-other" placeholder="Enter trait" />
+              </div>
+              <div class="mb-3">
+                <label for="market-animal-price" class="form-label">Price (SAR)</label>
+                <input type="number" class="form-control" id="market-animal-price" required min="0">
+              </div>
+              <div class="mb-3">
+                <label for="market-animal-image" class="form-label">Photo</label>
+                <input type="file" class="form-control" id="market-animal-image" accept="image/*">
+                <img id="market-animal-image-preview" src="" alt="Preview" class="img-fluid mt-2 d-none" style="max-height:120px;max-width:100%;object-fit:cover;border:1.5px solid #ccc;" />
+              </div>
+              <div id="add-market-animal-error" class="text-danger mb-2 d-none"></div>
+              <button type="submit" class="btn btn-primary w-100">Add Animal</button>
+            </form>
           </div>
         </div>
       </div>
-      <div id="fact-error" class="alert alert-danger mt-4 d-none" role="alert">
-        Unable to load animal facts at this time. Please try again later.
-      </div>
-    </section>
-    <section class="mt-5">
-      <h2 class="h4 mb-4">Latest Animal News</h2>
-      <div id="animal-news-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>
-    </section>
+    </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/community.js"></script>
+  <script src="js/animal-market.js"></script>
 </body>
 </html> 
