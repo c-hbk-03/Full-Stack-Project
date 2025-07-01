@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOBL - Network of Bloodlines Lineage</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="light home-page">
+  <nav class="navbar navbar-expand-lg nobl-navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="Images/NOBL-1.png" alt="NOBL Logo" height="110" class="me-2">
+      </a>
+      <span class="navbar-title mx-auto fw-bold text-uppercase text-center">Network Of Bloodlines and Lineages</span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="breeding.html">Breeding</a></li>
+          <li class="nav-item"><a class="nav-link" href="ecommerce.html">E-Commerce</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
+          <li class="nav-item d-flex align-items-center ms-2">
+            <button id="signin-btn" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#signinModal">Sign In</button>
+            <button id="theme-toggle" class="btn btn-outline-secondary" aria-label="Toggle theme">🌙</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Sign In Modal -->
+  <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signinModalLabel">Sign In</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="signin-form">
+            <div class="mb-3">
+              <label for="signin-username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="signin-username" required placeholder="Enter your username">
+            </div>
+            <div class="mb-3">
+              <label for="signin-password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="signin-password" required placeholder="Enter your password">
+              <span class="forgot-link">Forgot password?</span>
+            </div>
+            <div id="signin-error" class="text-danger mb-2 d-none">Invalid username or password.</div>
+            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main class="container py-5">
+    <h1 class="mb-4">Welcome to NOBL</h1>
+    <p class="lead">The premier platform for the horse and camel community in Saudi Arabia. Connect, trade, and stay informed with NOBL.</p>
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+      <div class="col">
+        <div class="card nobl-card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Breeding Platform</h5>
+            <p class="card-text flex-grow-1">Match your prized horses and camels for breeding. Find the perfect lineage and connect with other owners.</p>
+            <a href="#breeding" class="btn btn-outline-primary mt-auto">Find Matches</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card nobl-card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">E-Commerce</h5>
+            <p class="card-text flex-grow-1">Shop for saddles, feed, and all essentials for your animals. Quality products from trusted vendors.</p>
+            <a href="#ecommerce" class="btn btn-outline-primary mt-auto">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card nobl-card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Services</h5>
+            <p class="card-text flex-grow-1">Book vet visits, stable maintenance, and expert consultations. All services tailored for your needs.</p>
+            <a href="#services" class="btn btn-outline-primary mt-auto">View Services</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card nobl-card h-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Community</h5>
+            <p class="card-text flex-grow-1">Stay updated with the latest news and stories from the horse and camel world. Join the conversation!</p>
+            <a href="#community" class="btn btn-outline-primary mt-auto">Explore Community</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End homepage content -->
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,242 @@
+:root {
+  --nobl-orange: #D8831C;
+  --nobl-dark: #1B2316;
+  --nobl-cream: #F5E9D2;
+  --nobl-brown: #3a1d15;
+  --nobl-olive: #162311;
+  --nobl-offwhite: #F9F6ED;
+}
+body.light {
+  background: var(--nobl-cream);
+  color: var(--nobl-dark);
+  transition: background 0.4s, color 0.4s;
+}
+body.dark {
+  background: var(--nobl-dark);
+  color: var(--nobl-offwhite);
+  transition: background 0.4s, color 0.4s;
+}
+body.camel-mode {
+  background: var(--nobl-brown);
+  color: var(--nobl-offwhite);
+  transition: background 0.4s, color 0.4s;
+}
+body.horse-mode {
+  background: var(--nobl-olive);
+  color: var(--nobl-offwhite);
+  transition: background 0.4s, color 0.4s;
+}
+body.home-page.light {
+  background: var(--nobl-cream);
+  color: var(--nobl-dark);
+}
+body.home-page.dark {
+  background: #111;
+  color: #fff;
+}
+body.home-page .nobl-navbar {
+  background: var(--nobl-cream) !important;
+  color: var(--nobl-dark) !important;
+}
+body.home-page.dark .nobl-navbar {
+  background: #111 !important;
+  color: #fff !important;
+}
+body.home-page .nobl-card {
+  background: #fff;
+  border: 2px solid var(--nobl-orange);
+  color: #111;
+  transition: box-shadow 0.4s, transform 0.4s, background 0.4s;
+}
+body.home-page.dark .nobl-card {
+  background: #222;
+  border: 2px solid var(--nobl-orange);
+  color: #fff;
+}
+body.home-page .nobl-card:hover {
+  box-shadow: 0 8px 24px rgba(216, 131, 28, 0.18);
+  transform: translateY(-8px) scale(1.03) rotateY(2deg);
+  background: var(--nobl-cream);
+}
+body.home-page.dark .nobl-card:hover {
+  background: #333;
+}
+body.home-page .navbar-title {
+  color: var(--nobl-orange);
+}
+body.home-page.dark .navbar-title {
+  color: var(--nobl-orange);
+}
+body .nobl-navbar {
+  background: var(--nobl-cream) !important;
+  color: var(--nobl-dark) !important;
+}
+body.dark .nobl-navbar {
+  background: #111 !important;
+  color: #fff !important;
+}
+body.camel-mode .nobl-navbar,
+body.horse-mode .nobl-navbar {
+  background: var(--nobl-cream) !important;
+  color: var(--nobl-dark) !important;
+}
+body.dark.camel-mode .nobl-navbar,
+body.dark.horse-mode .nobl-navbar {
+  background: #111 !important;
+  color: #fff !important;
+}
+.navbar-brand span {
+  font-weight: bold;
+  color: var(--nobl-orange);
+  letter-spacing: 2px;
+}
+.nav-link {
+  color: var(--nobl-dark) !important;
+  transition: color 0.3s;
+}
+body.dark .nav-link {
+  color: var(--nobl-offwhite) !important;
+}
+#theme-toggle {
+  border-color: var(--nobl-orange);
+  color: var(--nobl-orange);
+  background: transparent;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+#theme-toggle:hover {
+  background: var(--nobl-orange);
+  color: var(--nobl-cream);
+}
+body.dark #theme-toggle {
+  color: var(--nobl-orange);
+  border-color: var(--nobl-orange);
+  background: transparent;
+}
+body.dark #theme-toggle:hover {
+  background: var(--nobl-orange);
+  color: var(--nobl-dark);
+}
+.nobl-card {
+  border: 1px solid var(--nobl-brown);
+  background: var(--nobl-cream);
+  transition: box-shadow 0.4s, transform 0.4s, background 0.4s;
+  box-shadow: 0 2px 8px rgba(107, 74, 43, 0.08);
+  border-radius: 0 !important;
+}
+.nobl-card:hover {
+  box-shadow: 0 8px 24px rgba(216, 131, 28, 0.18);
+  transform: translateY(-8px) scale(1.03) rotateY(2deg);
+  background: var(--nobl-offwhite);
+}
+body.dark .nobl-card {
+  background: var(--nobl-dark);
+  border-color: var(--nobl-orange);
+  color: var(--nobl-offwhite);
+}
+body.dark .nobl-card:hover {
+  background: var(--nobl-brown);
+  box-shadow: 0 8px 24px rgba(216, 131, 28, 0.22);
+}
+.camel-mode .nobl-card {
+  background: var(--nobl-brown);
+  border: 2px solid var(--nobl-orange);
+  color: var(--nobl-offwhite);
+  transition: background 0.4s, color 0.4s;
+  border-radius: 0 !important;
+}
+.horse-mode .nobl-card {
+  background: var(--nobl-olive);
+  border: 2px solid var(--nobl-orange);
+  color: var(--nobl-offwhite);
+  transition: background 0.4s, color 0.4s;
+  border-radius: 0 !important;
+}
+body.dark .camel-mode .nobl-card, body.dark .horse-mode .nobl-card {
+  background: var(--nobl-brown);
+  border-color: var(--nobl-orange);
+  color: var(--nobl-offwhite);
+}
+body.dark .camel-mode .nobl-card:hover, body.dark .horse-mode .nobl-card:hover {
+  background: var(--nobl-brown);
+  box-shadow: 0 8px 24px rgba(216, 131, 28, 0.22);
+}
+.navbar-title {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  color: var(--nobl-brown);
+  max-width: 60vw;
+  white-space: normal;
+}
+@media (min-width: 768px) {
+  .navbar-title {
+    font-size: 1.5rem;
+  }
+}
+body.dark .navbar-title {
+  color: var(--nobl-offwhite);
+}
+.camel-mode .navbar-title, .horse-mode .navbar-title {
+  color: var(--nobl-offwhite);
+}
+#mode-switcher .btn.active, #mode-switcher .btn:active {
+  color: #fff !important;
+  background: var(--nobl-brown);
+  border-color: var(--nobl-brown);
+}
+body.horse-mode #mode-switcher .btn.active, body.horse-mode #mode-switcher .btn:active {
+  background: var(--nobl-olive);
+  border-color: var(--nobl-olive);
+}
+#mode-switcher .btn {
+  min-width: 90px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  border-radius: 0 !important;
+}
+.btn, .btn-outline-primary, .btn-outline-secondary, .btn-primary {
+  border-radius: 0 !important;
+}
+.modal-content {
+  background: var(--nobl-cream);
+  color: var(--nobl-dark);
+  border-radius: 0 !important;
+  border: 2px solid var(--nobl-orange);
+}
+body.dark .modal-content {
+  background: #111;
+  color: #fff;
+}
+.modal-header {
+  border-bottom: 1px solid var(--nobl-orange);
+}
+.modal-title {
+  color: var(--nobl-orange);
+}
+#signin-form .form-label {
+  font-weight: 500;
+}
+#signin-form .btn-primary {
+  background: var(--nobl-orange);
+  border-color: var(--nobl-orange);
+  color: #fff;
+  font-weight: bold;
+}
+#signin-form .btn-primary:hover {
+  background: #b96a17;
+  border-color: #b96a17;
+}
+#signin-form .form-control {
+  border-radius: 0 !important;
+  border: 1.5px solid var(--nobl-orange);
+}
+#signin-form .form-control:focus {
+  border-color: var(--nobl-orange);
+  box-shadow: 0 0 0 0.2rem rgba(216,131,28,0.15);
+}
+#signin-form .forgot-link {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--nobl-orange);
+  text-decoration: underline;
+  font-size: 0.95rem;
+  cursor: pointer;
+} 
